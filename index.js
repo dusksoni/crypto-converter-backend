@@ -27,7 +27,8 @@ app.get('/api/currencies', async (req, res) => {
       id: crypto.id,
       name: crypto.name,
       symbol: crypto.symbol,
-      image: crypto.image
+      image: crypto.image,
+      price: crypto.current_price
     }));
 
     res.json(currencies);
