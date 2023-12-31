@@ -10,6 +10,19 @@ const cors = require("cors");
 
 app.use(cors())
 
+app.get('/api/currency-list', async (req, res) => {
+  try {
+    const response = await axios.get('https://api.coingecko.com/api/v3/simple/supported_vs_currencies');
+    const currencies = response.data;
+
+    res.json(currencies);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
 // Endpoint to fetch the top 100 cryptocurrencies and supported currencies
 app.get('/api/currencies', async (req, res) => {
   try {
